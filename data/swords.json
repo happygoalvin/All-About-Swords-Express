@@ -1,44 +1,36 @@
 [
     {
-        "_id": "01",
+        "_id": "",
         "name": "Katana",
         "origin":"Japanese",
         "description":"The first original Japanese swords that are considered the precursor of the 'modern' katana began to appear during the early Heian period (around 700 AD) Katana were mainly used by the samurai, the military nobility of feudal Japan (1185-1600) up through the Edo period (1603–1868).",
         "image":"https://manofmany.com/wp-content/uploads/2022/03/700-year-old-Katana-sword.png",
         "time-period-created": "700AD",
-        "fighting-style":[],
-        "tags":[
+        "blade":[
             {
-                "_id":"01",
-                "title":"Japanese"
-            },
-            {
-                "_id":"02",
-                "title":"Katana"
-            },
-            {
-                "_id":"03",
-                "title":"Samurai"
+                "_id":"",
+                "metal":"steel",
+                "length":""
             }
-        ]
+        ],
+        "fighting-style":[],
+        "tags":[]
     },
     {
-        "_id": "02",
+        "_id": "",
         "name": "Khopesh",
         "origin":"Egypt",
         "description":"The Khopesh is a curved sword utilized during the Bronze Age in Egypt. It is a weapon representing the classic sword style in North Africa and the Near East. This sword was also the piece that forged the Ancient Empire of Egypt. The Khopesh is always linked to Egypt despite not originating from there. The earliest form of the sword came from Mesopotamia around the start of the 2nd millennium BC. The Steele of the Vultures, 2500 BC, shows the Sumerian king, Eanatum, using a sickle-like sword. The sword may be a prototype of the Khopesh. After its development in Mesopotamia, the Khopesh was introduced to different places. Such places included Syria, while the others where Canaanite city-states. It came to Egypt from Mesopotamia after 1500 BC which was around the New Kingdom era.",
         "image":"https://www.history.com/.image/c_limit%2Ccs_srgb%2Cq_auto:good%2Cw_1024/MTU3ODc4NjAxMzY2MzgyMzAz/image-placeholder-title.webp",
         "time-period-created":"1500BC",
-        "fighting-style":[],
-        "tags":[
+        "blade":[
             {
-                "_id":"04",
-                "title":"Egyptian"
-            },
-            {
-                "_id":"05",
-                "title":"Medievil"
+                "_id":"",
+                "metal":"bronze",
+                "length":""
             }
-        ]
+        ],
+        "fighting-style":[],
+        "tags":[]
     }
 ]
