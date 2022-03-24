@@ -5,8 +5,6 @@ require('dotenv').config();
 const ObjectId = require('mongodb').ObjectId;
 const MongoUtil = require('./MongoUtil');
 const axios = require('axios');
-const req = require('express/lib/request');
-const { Db } = require('mongodb');
 
 // create the app
 const app = express();
@@ -21,6 +19,7 @@ app.use(cors());
 app.use(express.urlencoded({
     extended:false
 }));
+// SETUP END
 
 const COLLECTION_SWORD_INFO="sword_info"
 const COLLECTION_FIGHTING_STYLE="fighting_style"
