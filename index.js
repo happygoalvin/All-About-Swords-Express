@@ -65,7 +65,7 @@ async function main(){
                     blade,
                     image_url,
                     time_period_created, 
-                    tagVerification,
+                    'tags': tagVerification,
                     // fighting_style
                 })
                 res.status(200);
@@ -98,13 +98,10 @@ async function main(){
         }
     }
 
-    app.put('/swords/:id', async (req,res) => {
-        
-        try {
+    app.put('/swords/:id', async (req,res) => {        
         let {name, origin, description, image_url, blade, time_period_created} = req.body
 
         const db = MongoUtil.getDB();
-
         let tags = req.body.tags || [];
         let tagVerification = await Promise.all(tags.map(async (t) => {
             let foundTag = await db.collection(COLLECTION_TAGS).find({
@@ -124,6 +121,7 @@ async function main(){
                     'origin': origin,
                     'description': description,
                     'image_url': image_url,
+                    'tags': tagVerification,
                     'blade': blade,
                     'time_period_created': time_period_created
                 }
@@ -137,13 +135,6 @@ async function main(){
             res.json({
                 message:"tags is invalid"
             })
-        } 
-    } catch (e) {
-        res.status(500)
-            res.json({
-                message: "Internal server error. Please contact administrator"
-            })
-            console.log(e)
         }
     })
     
