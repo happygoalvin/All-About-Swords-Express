@@ -34,12 +34,6 @@ async function main(){
     
         try {
             let {name, origin, description, image_url, blade, time_period_created} = req.body
-            // console.log(blade.metal)
-            // tags = tags.split(",");
-            // tags = tags.map(function(each_tags){
-            //     return each_tags.trim()
-            // })
-
             // fighting_style = fighting_style.split(',');
             // fighting_style = fighting_style.map(function(each_style) {
             //     return each_style.trim()
@@ -144,6 +138,17 @@ async function main(){
         'sword_info':sword_info
     })
 })
+
+    app.delete('/swords/:id', async (req,res) => {
+        const db = MongoUtil.getDB();
+        await db.collection(COLLECTION_SWORD_INFO).deleteOne({
+            '_id':ObjectId(req.params.id)
+        })
+        res.status(200);
+        res.json({
+            'message': 'The document has been deleted'
+        })
+    })
 
     app.get('/tags', async (req,res) => {
         const db = MongoUtil.getDB();
