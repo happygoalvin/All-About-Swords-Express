@@ -29,6 +29,11 @@ const COLLECTION_TAGS = "tags"
 async function main() {
     await MongoUtil.connect(process.env.MONGO_URI, "all_about_swords")
 
+
+    app.get('/', async (req,res) => {
+        res.send("All-About-Swords Api get successful")
+    })
+
     app.post('/swords', async (req, res) => {
 
         try {
