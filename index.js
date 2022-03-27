@@ -85,26 +85,43 @@ async function main() {
     app.get('/swords', async (req, res) => {
 
         try {
+            
             let criteria = {};
-
+            
             if (req.query.name) {
                 criteria['name'] = {
-                    '$regex': req.query.description,
-                    'options': 'i'
+                    '$regex': req.query.name,
+                    '$options': 'i'
                 }
+            } else if (req.query.name === "") {
+                throw "Please enter a name" 
             }
-
-            if (!req.query.lengthLesserThan.match(/^\d+$/)) { throw "Please enter integers only." }
-            if (!req.query.lengthGreaterThan.match(/^\d+$/)) { throw "Please enter integers only" }
-            if (req.query.lengthGreaterThan || req.query.lengthLesserThan) {
-                criteria['blade.length'] = {
-                    $gte: Number(req.query.lengthGreaterThan),
-                    $lte: Number(req.query.lengthLesserThan)
+            
+            if (req.query.lengthGreaterThan && req.query.lengthLesserThan) {
+                if (!req.query.lengthLesserThan.match(/^\d+$/)) { throw "Please enter integers only." }
+                if (!req.query.lengthGreaterThan.match(/^\d+$/)) { throw "Please enter integers only" }
+                if (req.query.lengthGreaterThan || req.query.lengthLesserThan) {
+                    criteria['blade.length'] = {
+                        $gte: Number(req.query.lengthGreaterThan),
+                        $lte: Number(req.query.lengthLesserThan)
+                    }
                 }
+        }
+
+            if (req.query.tags) {
+                criteria['tags'] = {
+                    '$elemMatch' : {
+                        'name': {
+                            '$in': req.query.tags.split(',')
+                        }
+                    }
+                } 
             } 
 
+            
             const db = MongoUtil.getDB();
-            let sword_info = await db.collection(COLLECTION_SWORD_INFO).find(criteria).project({name:1, _id:0}).toArray();
+            
+            let sword_info = await db.collection(COLLECTION_SWORD_INFO).find(criteria).toArray();
             res.json({
                 'sword_info': sword_info
             })
