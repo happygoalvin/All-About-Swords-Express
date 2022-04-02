@@ -11,5 +11,11 @@
   },
   "scripts": {
     "start": "node index.js"
-  }
+  },
+  "name": "All-About-Swords-Express",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/happygoalvin/All-About-Swords-Express.git",
+  "author": "happygoalvin <yo.alvin.96@gmail.com>",
+  "license": "MIT"
 }
