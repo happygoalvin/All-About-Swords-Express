@@ -108,7 +108,6 @@ async function main() {
       }
 
       let tags = req.body.tags || [];
-      // tags = ["id1", "id2", "id3"];
       let tagVerification = await Promise.all(
         tags.map(async (t) => {
           let foundTag = await db
@@ -204,6 +203,27 @@ async function main() {
     }
   });
 
+  app.get("/swords/:id", async (req, res) => {
+    try {
+      const db = MongoUtil.getDB();
+
+      let sword_info = await db
+        .collection(COLLECTION_SWORD_INFO)
+        .find({
+          _id: ObjectId(req.params.id),
+        })
+        .toArray();
+      res.json({
+        sword_info: sword_info,
+      });
+    } catch (e) {
+      res.status(500);
+      res.json({
+        message: "Invalid ID",
+      });
+    }
+  });
+
   app.put("/swords/:id", async (req, res) => {
     let {
       name,
@@ -227,9 +247,7 @@ async function main() {
         let foundTag = await db
           .collection(COLLECTION_TAGS)
           .find({
-            _id: {
-              $in: [ObjectId(t)],
-            },
+            _id: ObjectId(t),
           })
           .toArray();
         if (foundTag && foundTag.length > 0) return foundTag[0];
@@ -277,7 +295,7 @@ async function main() {
     });
   });
 
-  app.get("/swords/tags", async (req, res) => {
+  app.get("/tags", async (req, res) => {
     const db = MongoUtil.getDB();
     let tags = await db.collection(COLLECTION_TAGS).find().toArray();
     res.json({
