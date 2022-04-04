@@ -157,9 +157,9 @@ async function main() {
           $regex: req.query.name,
           $options: "i",
         };
-      } else if (req.query.name === "") {
-        throw "Please enter a name";
-      }
+    } // else if (req.query.name === "") {
+    //     throw "Please enter a name";
+    //   }
 
       if (req.query.lengthGreaterThan && req.query.lengthLesserThan) {
         if (!req.query.lengthLesserThan.match(/^\d+$/)) {
