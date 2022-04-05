@@ -174,10 +174,11 @@ async function main() {
         }
       }
 
+      console.log(req.query.tags)
       if (req.query.tags) {
         criteria["tags"] = {
           $elemMatch: {
-            name: {
+            label: {
               $in: req.query.tags.split(","),
             },
           },
