@@ -177,7 +177,7 @@ async function main() {
       if (req.query.tags) {
         criteria["tags"] = {
           $elemMatch: {
-            label: {
+            name: {
               $in: req.query.tags.split(","),
             },
           },
@@ -209,6 +209,9 @@ async function main() {
         .collection(COLLECTION_SWORD_INFO)
         .find({
           _id: ObjectId(req.params.id),
+        })
+        .project({
+          _id: 0,
         })
         .toArray();
       res.json({
