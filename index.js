@@ -113,7 +113,7 @@ async function main() {
           let foundTag = await db
             .collection(COLLECTION_TAGS)
             .find({
-              value: t.value,
+              value: t,
             })
             .toArray();
           if (foundTag && foundTag.length > 0) return foundTag[0];
