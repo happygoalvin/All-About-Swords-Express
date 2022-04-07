@@ -144,7 +144,6 @@ async function main() {
       res.json({
         message: e,
       });
-      console.log(e);
     }
   });
 
@@ -174,7 +173,6 @@ async function main() {
         }
       }
 
-      console.log(req.query.tags);
       if (req.query.tags) {
         criteria["tags"] = {
           $elemMatch: {
@@ -272,9 +270,10 @@ async function main() {
         }
       }
 
-      if (req.body.blade.length.match(/^\d+$/)) {
+      
+      if (req.body.blade.length.toString().match(/^[1-9]\d*$/)) {
         req.body.blade.length = Number(req.body.blade.length);
-      } else if (!req.body.blade.length.match(/^\d+$/)) {
+      } else if (!req.body.blade.length.toString().match(/^[1-9]\d*$/)) {
         throw "Please enter integers only";
       }
     } else {
