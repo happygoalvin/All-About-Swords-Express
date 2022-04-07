@@ -174,7 +174,7 @@ async function main() {
         }
       }
 
-      console.log(req.query.tags)
+      console.log(req.query.tags);
       if (req.query.tags) {
         criteria["tags"] = {
           $elemMatch: {
@@ -237,10 +237,61 @@ async function main() {
       fighting_style,
     } = req.body;
 
-    fighting_style = fighting_style.split(",");
-    fighting_style = fighting_style.map(function (each_style) {
-      return each_style.trim();
-    });
+    if (fighting_style) {
+      if (Array.isArray(fighting_style)) {
+        fighting_style = fighting_style;
+      } else {
+        fighting_style = [fighting_style];
+      }
+    }
+
+    if (name.length <= 2 || !name.match(/^[a-zA-Z]+$/)) {
+      throw "Please enter a valid name";
+    }
+
+    if (origin && !origin.match(/^[a-zA-Z]+$/)) {
+      throw "Please enter a valid country of origin";
+    }
+
+    if (description.length <= 50) {
+      throw "Please enter a valid description";
+    }
+
+    if (
+      image_url &&
+      !image_url.includes("https://") &&
+      !image_url.includes("http://")
+    ) {
+      throw "Please enter a valid image url";
+    }
+
+    if (blade) {
+      if (req.body.blade.metal) {
+        if (!req.body.blade.metal.match(/^[A-Za-z.\s-]+$/)) {
+          throw "Please enter a valid metal";
+        }
+      }
+
+      if (req.body.blade.length.match(/^\d+$/)) {
+        req.body.blade.length = Number(req.body.blade.length);
+      } else if (!req.body.blade.length.match(/^\d+$/)) {
+        throw "Please enter integers only";
+      }
+    } else {
+      throw "Please enter blade info";
+    }
+
+    if (
+      time_period_created &&
+      !time_period_created.includes("AD") &&
+      !time_period_created.includes("BC")
+    ) {
+      throw "Please end time period with AD or BC";
+    }
+
+    if (fighting_style && fighting_style.length < 1) {
+      throw "Please provide a fighting style";
+    }
 
     const db = MongoUtil.getDB();
     let tags = req.body.tags || [];
@@ -249,7 +300,7 @@ async function main() {
         let foundTag = await db
           .collection(COLLECTION_TAGS)
           .find({
-            _id: ObjectId(t),
+            value: t,
           })
           .toArray();
         if (foundTag && foundTag.length > 0) return foundTag[0];
