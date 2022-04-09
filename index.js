@@ -26,7 +26,6 @@ app.use(
 // SETUP END
 
 const COLLECTION_SWORD_INFO = "sword_info";
-const COLLECTION_FIGHTING_STYLE = "fighting_style";
 const COLLECTION_TAGS = "tags";
 
 // ROUTES
@@ -63,7 +62,7 @@ async function main() {
         throw "Please enter a valid name";
       }
 
-      if (origin && !origin.match(/^[a-zA-Z]+$/)) {
+      if (origin && !origin.match(/^[a-zA-Z ]+$/)) {
         throw "Please enter a valid country of origin";
       }
 
@@ -86,9 +85,9 @@ async function main() {
           }
         }
 
-        if (req.body.blade.length.match(/^\d+$/)) {
+        if (req.body.blade.length.toString().match(/^[1-9]\d*$/)) {
           req.body.blade.length = Number(req.body.blade.length);
-        } else if (!req.body.blade.length.match(/^\d+$/)) {
+        } else if (!req.body.blade.length.toString().match(/^[1-9]\d*$/)) {
           throw "Please enter integers only";
         }
       } else {
