@@ -6,17 +6,17 @@ The page for the front-end react project can be found [here.](https://github.com
 
 # index
 
-1. [Context](Context)
-2. [Database Documentation](Database-Documentation)
-3. [Technologies Used](Technologies-Used)
+1. [Context](#1-Context)
+2. [Database Documentation](#2-Database-Documentation)
+3. [Technologies Used](#3-Technologies-Used)
 
-# Context
+# 1. Context
 
 This is a custom API built for the [All-About-Swords App](https://helpful-babka-176ba5.netlify.app/) project.
 
 The aim of the project is to build a simple CRUD application managing a list of sword information, using [MongoDB](https://www.mongodb.com/) and [ExpressJS](https://expressjs.com/)
 
-# Database Documentation
+# 2. Database Documentation
 
 The database has two collections that are being called for the API. The first collection is a collection of all the sword info needed to display for the user to see.
 
@@ -24,7 +24,7 @@ The second collection is a pre-defined info of tags that the user can select.
 
 The first collection forms the bulk of the project and fully supports CRUD operations.
 
-# Technologies Used
+# 3. Technologies Used
 
 - [ExpressJS](https://expressjs.com/)
 
