@@ -4,6 +4,10 @@ This is a simple RESTFUL API project built with Express.js and MongoDB for `All-
 
 The page for the front-end react project can be found [here.](https://github.com/happygoalvin/All-About-Swords)
 
+## Live Link
+
+Live link to the deployed API can be found [here](https://all-about-swords-express.herokuapp.com/)
+
 # index
 
 1. [Context](#1-Context)
@@ -23,6 +27,12 @@ The database has two collections that are being called for the API. The first co
 The second collection is a pre-defined info of tags that the user can select.
 
 The first collection forms the bulk of the project and fully supports CRUD operations.
+
+## Routing
+
+User can GET, POST, PUT, DELETE sword info from `/swords` route
+
+User can GET tags from `/tags` route
 
 # 3. Technologies Used
 
